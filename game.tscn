@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv6s6gsst2nst"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_1wnln"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( "1_1wnln" )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = -2048
+anchor_mode = 0
+current = true
+zoom = Vector2(4, 4)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 384.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0509804, 0.168627, 0.270588, 1)
+__meta__ = {
+"_edit_use_custom_anchors": false
+}

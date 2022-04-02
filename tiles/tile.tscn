@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c55flai6x6fxg"]
+
+[ext_resource type="PackedScene" uid="uid://b2v66kv5qq6lb" path="res://drop_zone.tscn" id="1_qkwhh"]
+[ext_resource type="Texture2D" uid="uid://cglxd8ealxwqg" path="res://tiles/tile_outline.png" id="2_73rog"]
+
+[node name="Tile" type="Node2D"]
+
+[node name="DropZone" parent="." instance=ExtResource( "1_qkwhh" )]
+radius = 16.0
+
+[node name="TileOutline" type="Sprite2D" parent="."]
+texture = ExtResource( "2_73rog" )
+centered = false

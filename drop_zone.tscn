@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2v66kv5qq6lb"]
+
+[ext_resource type="Script" path="res://drop_zone.gd" id="1_y4sg2"]
+
+[node name="DropZone" type="Position2D" groups=["zone"]]
+script = ExtResource( "1_y4sg2" )

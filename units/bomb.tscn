@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4en4qq3inyom"]
+
+[ext_resource type="PackedScene" uid="uid://dteauk14rk1js" path="res://units/unit.tscn" id="1_iivok"]
+[ext_resource type="Script" path="res://units/bomb_idle_state.gd" id="2_fol63"]
+[ext_resource type="Texture2D" uid="uid://bk6lvwwjcqdhk" path="res://units/bomb.png" id="3_wark8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n10ds"]
+atlas = ExtResource( "3_wark8" )
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8npl"]
+atlas = ExtResource( "3_wark8" )
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1myi"]
+animations = [{
+"frames": [SubResource( "AtlasTexture_n10ds" ), SubResource( "AtlasTexture_a8npl" )],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Bomb" instance=ExtResource( "1_iivok" )]
+
+[node name="StateMachine" parent="." index="0"]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( "2_fol63" )
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+frames = SubResource( "SpriteFrames_u1myi" )
+animation = &"idle"
+frame = 1

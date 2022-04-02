@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cccev74dbfehc"]
+
+[ext_resource type="Texture2D" uid="uid://dilppdvp1egc5" path="res://units/javelin.png" id="1_1jyr1"]
+[ext_resource type="Script" path="res://units/javelin.gd" id="1_8l6q3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arqvi"]
+atlas = ExtResource( "1_1jyr1" )
+region = Rect2(0, 0, 13, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pctpr"]
+atlas = ExtResource( "1_1jyr1" )
+region = Rect2(13, 0, 13, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_62dx3"]
+animations = [{
+"frames": [SubResource( "AtlasTexture_arqvi" ), SubResource( "AtlasTexture_pctpr" )],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23c1v"]
+size = Vector2(8, 4)
+
+[node name="Javelin" type="CharacterBody2D"]
+script = ExtResource( "1_8l6q3" )
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource( "SpriteFrames_62dx3" )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "RectangleShape2D_23c1v" )
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

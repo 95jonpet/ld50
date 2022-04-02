@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://vm7ejescswoh"]
+
+[ext_resource type="PackedScene" uid="uid://dteauk14rk1js" path="res://units/unit.tscn" id="1_yyij4"]
+[ext_resource type="Script" path="res://units/tank_unit.gd" id="2_1kuts"]
+[ext_resource type="Texture2D" uid="uid://csmxoiww3fw5o" path="res://units/tank_unit.png" id="2_a141g"]
+[ext_resource type="Script" path="res://units/tank_idle_state.gd" id="3_rusni"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6vap"]
+animations = [{
+"frames": [ExtResource( "2_a141g" )],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g781h"]
+size = Vector2(24, 14)
+
+[sub_resource type="Animation" id="Animation_wbl0w"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_74hm8"]
+resource_name = "play_tick"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[node name="TankUnit" instance=ExtResource( "1_yyij4" )]
+script = ExtResource( "2_1kuts" )
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( "3_rusni" )
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+frames = SubResource( "SpriteFrames_g6vap" )
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( "RectangleShape2D_g781h" )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/idle = SubResource( "Animation_wbl0w" )
+anims/play_tick = SubResource( "Animation_74hm8" )

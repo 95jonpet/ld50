@@ -4,7 +4,7 @@ extends CharacterBody2D
 signal click_pressed(Unit)
 signal click_released(Unit)
 
-@onready var animation_player := $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var state_machine := $StateMachine
 
 
@@ -16,3 +16,9 @@ func _input(event: InputEvent) -> void:
 func _on_unit_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
 		click_pressed.emit(self)
+
+
+func play_tick() -> void:
+	if animation_player.has_animation("play_tick"):
+		animation_player.play("play_tick")
+		await animation_player.animation_finished

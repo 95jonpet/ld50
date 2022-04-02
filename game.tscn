@@ -27,15 +27,30 @@ offset_right = 48.0
 offset_bottom = 24.0
 texture = ExtResource( "3_rxp3g" )
 
-[node name="StartButton" type="Button" parent="UI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -23.0
+offset_left = -768.0
 offset_top = -31.0
-offset_right = 23.0
+offset_right = 768.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/HBoxContainer"]
+offset_left = 723.0
+offset_right = 769.0
+offset_bottom = 31.0
 text = "Start"
+
+[node name="PlayTickButton" type="Button" parent="UI/HBoxContainer"]
+offset_left = 773.0
+offset_right = 812.0
+offset_bottom = 31.0
+text = "Tick
+"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = -2048
@@ -43,4 +58,5 @@ anchor_mode = 0
 current = true
 zoom = Vector2(4, 4)
 
-[connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/PlayTickButton" to="." method="_on_play_tick_button_pressed"]

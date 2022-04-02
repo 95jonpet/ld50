@@ -13,6 +13,9 @@ func _ready() -> void:
 
 
 func enter(_msg := {}) -> void:
+	if unit.animation_player.has_animation("undeployed"):
+		unit.animation_player.play("undeployed")
+	
 	var rest_nodes := get_tree().get_nodes_in_group("zone")
 	rest_point = unit.global_position if unit.rest_nodes.is_empty() else rest_nodes[0].global_position
 	snap_to_zone()
@@ -47,9 +50,9 @@ func snap_to_zone() -> void:
 			return # Only snap to the first zone.
 
 
-func _on_unit_click_pressed(Unit) -> void:
+func _on_unit_click_pressed(_unit: Unit) -> void:
 	select()
 
 
-func _on_unit_click_released(Unit) -> void:
+func _on_unit_click_released(_unit: Unit) -> void:
 	deselect()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bknrfiddlpaxy"]
+
+[ext_resource type="PackedScene" uid="uid://c55flai6x6fxg" path="res://tiles/tile.tscn" id="1_qm08m"]
+[ext_resource type="Texture2D" uid="uid://bbcb4nrirj31w" path="res://tiles/rock_tile.png" id="2_h6kby"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i18q5"]
+
+[node name="RockTile" groups=["destructible_tile"] instance=ExtResource( "1_qm08m" )]
+
+[node name="DropZone" parent="." index="0"]
+blocked = true
+
+[node name="RockTile" type="Sprite2D" parent="." index="2"]
+texture = ExtResource( "2_h6kby" )
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource( "CircleShape2D_i18q5" )

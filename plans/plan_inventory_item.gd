@@ -3,8 +3,8 @@ extends TextureRect
 @onready var border: ReferenceRect = $ReferenceRect
 
 
-func initialize(texture: Texture) -> void:
-	self.texture = texture
+func initialize(new_texture: Texture) -> void:
+	self.texture = new_texture
 
 
 func select() -> void:

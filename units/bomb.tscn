@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4en4qq3inyom"]
+[gd_scene load_steps=12 format=3 uid="uid://b4en4qq3inyom"]
 
 [ext_resource type="PackedScene" uid="uid://dteauk14rk1js" path="res://units/unit.tscn" id="1_iivok"]
 [ext_resource type="Script" path="res://units/bomb_idle_state.gd" id="2_fol63"]
 [ext_resource type="Texture2D" uid="uid://bk6lvwwjcqdhk" path="res://units/bomb.png" id="3_wark8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqurn"]
-atlas = ExtResource( "3_wark8" )
-region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n10ds"]
 atlas = ExtResource( "3_wark8" )
@@ -16,16 +12,20 @@ region = Rect2(0, 0, 24, 24)
 atlas = ExtResource( "3_wark8" )
 region = Rect2(24, 0, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqurn"]
+atlas = ExtResource( "3_wark8" )
+region = Rect2(0, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u1myi"]
 animations = [{
-"frames": [SubResource( "AtlasTexture_rqurn" )],
-"loop": true,
-"name": &"undeployed",
-"speed": 5.0
-}, {
 "frames": [SubResource( "AtlasTexture_n10ds" ), SubResource( "AtlasTexture_a8npl" )],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [SubResource( "AtlasTexture_rqurn" )],
+"loop": true,
+"name": &"undeployed",
 "speed": 5.0
 }]
 
@@ -47,6 +47,48 @@ tracks/0/keys = {
 "values": [&"idle"]
 }
 
+[sub_resource type="Animation" id="Animation_yprxn"]
+resource_name = "play_tick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1pvtq"]
+resource_name = "undeployed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"undeployed"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [node name="Bomb" instance=ExtResource( "1_iivok" )]
 
 [node name="Idle" type="Node" parent="StateMachine" index="0"]
@@ -61,3 +103,5 @@ shape = SubResource( "CircleShape2D_gshx8" )
 
 [node name="AnimationPlayer" parent="." index="3"]
 anims/idle = SubResource( "Animation_b2b11" )
+anims/play_tick = SubResource( "Animation_yprxn" )
+anims/undeployed = SubResource( "Animation_1pvtq" )

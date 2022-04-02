@@ -5,6 +5,6 @@ var unit: Unit
 
 
 func _ready() -> void:
-	await owner.ready
+	await owner._ready
 	unit = owner as Unit
 	assert(unit != null)

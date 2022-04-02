@@ -1,9 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv6s6gsst2nst"]
+[gd_scene load_steps=4 format=3 uid="uid://dv6s6gsst2nst"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_1wnln"]
+[ext_resource type="PackedScene" uid="uid://bsdfbsy7jel2t" path="res://plans/plan_inventory_item.tscn" id="2_qfx76"]
+[ext_resource type="Texture2D" uid="uid://bk6lvwwjcqdhk" path="res://units/bomb.png" id="3_rxp3g"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( "1_1wnln" )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+size_flags_vertical = 3
+
+[node name="PlanInventory" type="VBoxContainer" parent="UI/PanelContainer"]
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="PlanInventoryItem" parent="UI/PanelContainer/PlanInventory" instance=ExtResource( "2_qfx76" )]
+offset_right = 48.0
+offset_bottom = 24.0
+texture = ExtResource( "3_rxp3g" )
+
+[node name="StartButton" type="Button" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -31.0
+offset_right = 23.0
+text = "Start"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = -2048
@@ -11,15 +43,4 @@ anchor_mode = 0
 current = true
 zoom = Vector2(4, 4)
 
-[node name="ColorRect" type="ColorRect" parent="Camera2D"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 384.0
-offset_bottom = 216.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.0509804, 0.168627, 0.270588, 1)
-__meta__ = {
-"_edit_use_custom_anchors": false
-}
+[connection signal="pressed" from="UI/StartButton" to="." method="_on_start_button_pressed"]

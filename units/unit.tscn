@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dteauk14rk1js"]
+[gd_scene load_steps=4 format=3 uid="uid://dteauk14rk1js"]
 
 [ext_resource type="Script" path="res://units/unit.gd" id="1_3d1lj"]
 [ext_resource type="Script" path="res://states/state_machine.gd" id="1_xeuqc"]
+[ext_resource type="Script" path="res://units/unit_undeployed_state.gd" id="3_cxmug"]
 
-[node name="Unit" type="CharacterBody2D"]
+[node name="Unit" type="CharacterBody2D" groups=["unit"]]
+input_pickable = true
 script = ExtResource( "1_3d1lj" )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "1_xeuqc" )
+initial_state = NodePath("Undeployed")
+
+[node name="Undeployed" type="Node" parent="StateMachine"]
+script = ExtResource( "3_cxmug" )
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 playing = true
@@ -15,3 +21,7 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="click_pressed" from="." to="StateMachine/Undeployed" method="_on_unit_click_pressed"]
+[connection signal="click_released" from="." to="StateMachine/Undeployed" method="_on_unit_click_released"]
+[connection signal="input_event" from="." to="." method="_on_unit_input_event"]

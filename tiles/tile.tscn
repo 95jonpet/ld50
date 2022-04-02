@@ -6,8 +6,7 @@
 [node name="Tile" type="Node2D"]
 
 [node name="DropZone" parent="." instance=ExtResource( "1_qkwhh" )]
-radius = 16.0
+radius = 12.0
 
 [node name="TileOutline" type="Sprite2D" parent="."]
 texture = ExtResource( "2_73rog" )
-centered = false

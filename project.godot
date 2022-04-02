@@ -47,6 +47,7 @@ config/features=PackedStringArray("4.0", "Vulkan Mobile")
 
 window/size/viewport_width=1536
 window/size/viewport_height=864
+window/size/resizable=false
 
 [input]
 
@@ -59,6 +60,7 @@ click={
 [rendering]
 
 vulkan/rendering/back_end=1
+environment/defaults/default_clear_color=Color(0.0509804, 0.168627, 0.270588, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
 textures/canvas_textures/default_texture_filter=0

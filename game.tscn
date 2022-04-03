@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dv6s6gsst2nst"]
+[gd_scene load_steps=7 format=3 uid="uid://dv6s6gsst2nst"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_1wnln"]
 [ext_resource type="PackedScene" uid="uid://bsdfbsy7jel2t" path="res://plans/plan_inventory_item.tscn" id="2_qfx76"]
 [ext_resource type="Texture2D" uid="uid://bk6lvwwjcqdhk" path="res://units/bomb.png" id="3_rxp3g"]
 [ext_resource type="PackedScene" uid="uid://3cwjkk7of4rg" path="res://levels/level.tscn" id="4_g8yrq"]
+[ext_resource type="Theme" uid="uid://vmooo8c2f5xr" path="res://ui/theme.tres" id="4_ll0mn"]
 [ext_resource type="PackedScene" uid="uid://vm7ejescswoh" path="res://units/tank_unit.tscn" id="5_sdjag"]
 
 [node name="Game" type="Node2D"]
@@ -35,24 +36,44 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -768.0
-offset_top = -31.0
+offset_top = -80.0
 offset_right = 768.0
+offset_bottom = -32.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 alignment = 1
 
 [node name="StartButton" type="Button" parent="UI/HBoxContainer"]
-offset_left = 723.0
-offset_right = 769.0
-offset_bottom = 31.0
-text = "Start"
+offset_left = 672.0
+offset_right = 864.0
+offset_bottom = 56.0
+size_flags_horizontal = 6
+theme = ExtResource( "4_ll0mn" )
+theme_override_font_sizes/font_size = 32
+text = "    Engage    "
 
-[node name="PlayTickButton" type="Button" parent="UI/HBoxContainer"]
-offset_left = 773.0
-offset_right = 812.0
-offset_bottom = 31.0
-text = "Tick
-"
+[node name="LevelDetails" type="VBoxContainer" parent="UI"]
+anchor_right = 1.0
+offset_bottom = 170.0
+
+[node name="LevelName" type="Label" parent="UI/LevelDetails"]
+offset_right = 1536.0
+offset_bottom = 96.0
+size_flags_horizontal = 3
+theme = ExtResource( "4_ll0mn" )
+theme_override_font_sizes/font_size = 64
+text = "Level name"
+horizontal_alignment = 1
+
+[node name="LevelDescription" type="Label" parent="UI/LevelDetails"]
+offset_top = 100.0
+offset_right = 1536.0
+offset_bottom = 156.0
+size_flags_horizontal = 3
+theme = ExtResource( "4_ll0mn" )
+theme_override_font_sizes/font_size = 32
+text = "Level description"
+horizontal_alignment = 1
 
 [node name="Tiles" type="Node" parent="."]
 
@@ -75,5 +96,9 @@ zoom = Vector2(4, 4)
 position = Vector2(192, 108)
 current = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="pressed" from="UI/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/PlayTickButton" to="." method="_on_play_tick_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

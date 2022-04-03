@@ -5,7 +5,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hn3c4"]
 
-[node name="TentsTile" groups=["destructible_tile"] instance=ExtResource( "1_14rgf" )]
+[node name="TentsTile" groups=["destructible_tile", "required_tile"] instance=ExtResource( "1_14rgf" )]
+
+[node name="DropZone" parent="." index="0"]
+blocked = true
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( "RectangleShape2D_hn3c4" )

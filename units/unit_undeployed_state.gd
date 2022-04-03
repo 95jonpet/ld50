@@ -20,13 +20,12 @@ func enter(_msg := {}) -> void:
 	if unit.animation_player.has_animation("undeployed"):
 		unit.animation_player.play("undeployed")
 	
-	var rest_nodes := get_tree().get_nodes_in_group("zone")
-	rest_point = unit.global_position if unit.rest_nodes.is_empty() else rest_nodes[0].global_position
 	snap_to_zone()
 
 
 func exit(_msg := {}) -> void:
 	selectable = false
+	unit.global_position = rest_point
 
 
 func select() -> void:

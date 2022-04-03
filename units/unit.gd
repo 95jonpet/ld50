@@ -6,7 +6,7 @@ signal click_released(Unit)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@onready var state_machine := $StateMachine
+@onready var state_machine: StateMachine = $StateMachine
 
 
 func _input(event: InputEvent) -> void:

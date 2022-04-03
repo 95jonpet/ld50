@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://vmooo8c2f5xr"]
+
+[ext_resource type="FontData" uid="uid://djqimujf84r0j" path="res://ui/kenney_mini_square.ttf" id="1_hbu6c"]
+
+[sub_resource type="Font" id="Font_chh6m"]
+spacing_top = 4
+spacing_bottom = 4
+data/0 = ExtResource( "1_hbu6c" )
+
+[resource]
+default_font = SubResource( "Font_chh6m" )

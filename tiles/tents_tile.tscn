@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciblte2nqjisv"]
+
+[ext_resource type="PackedScene" uid="uid://c55flai6x6fxg" path="res://tiles/tile.tscn" id="1_14rgf"]
+[ext_resource type="Texture2D" uid="uid://by5h42af06cl4" path="res://tiles/tents.png" id="2_4e4ii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn3c4"]
+
+[node name="TentsTile" groups=["destructible_tile"] instance=ExtResource( "1_14rgf" )]
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( "RectangleShape2D_hn3c4" )
+
+[node name="Tents" type="Sprite2D" parent="." index="3"]
+texture = ExtResource( "2_4e4ii" )

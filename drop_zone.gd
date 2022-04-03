@@ -1,3 +1,4 @@
+class_name DropZone
 extends Position2D
 
 @export var blocked: bool = false

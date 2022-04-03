@@ -1,7 +1,9 @@
 extends UnitState
 
+const CLICK_SOUND := preload("res://units/click.wav")
 const LERP_SPEED := 25
 
+var selectable := true
 var selected := false
 var previous_zone: Node2D
 var rest_point: Vector2
@@ -10,9 +12,11 @@ var rest_point: Vector2
 func _ready() -> void:
 	await super()
 	rest_point = unit.global_position
+	snap_to_zone()
 
 
 func enter(_msg := {}) -> void:
+	selectable = true
 	if unit.animation_player.has_animation("undeployed"):
 		unit.animation_player.play("undeployed")
 	
@@ -21,13 +25,30 @@ func enter(_msg := {}) -> void:
 	snap_to_zone()
 
 
+func exit(_msg := {}) -> void:
+	selectable = false
+
+
 func select() -> void:
+	if selected or not selectable:
+		return
+	
 	selected = true
+	play_sound_once(CLICK_SOUND)
 
 
 func deselect() -> void:
+	if not selected or not selectable:
+		return
+	
 	selected = false
+	play_sound_once(CLICK_SOUND)
 	snap_to_zone()
+
+
+func play_sound_once(stream: AudioStream) -> void:
+	unit.audio_player.stream = stream
+	unit.audio_player.play()
 
 
 func physics_update(delta: float) -> void:

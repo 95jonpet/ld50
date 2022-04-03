@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://droy72igapywt"]
+
+[ext_resource type="PackedScene" uid="uid://c55flai6x6fxg" path="res://tiles/tile.tscn" id="1_pcod7"]
+[ext_resource type="Texture2D" uid="uid://cgb8npg4332wh" path="res://tiles/bunker.png" id="2_n1py5"]
+
+[node name="BunkerTile" instance=ExtResource( "1_pcod7" )]
+
+[node name="Bunker" type="Sprite2D" parent="." index="3" groups=["destructible_tile"]]
+texture = ExtResource( "2_n1py5" )

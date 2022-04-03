@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cccev74dbfehc"]
+[gd_scene load_steps=8 format=3 uid="uid://cccev74dbfehc"]
 
 [ext_resource type="Texture2D" uid="uid://dilppdvp1egc5" path="res://units/javelin.png" id="1_1jyr1"]
 [ext_resource type="Script" path="res://units/javelin.gd" id="1_8l6q3"]
@@ -22,6 +22,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23c1v"]
 size = Vector2(8, 4)
 
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_ndvjv"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 16.0
+initial_velocity_max = 16.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 2.0
+linear_accel_max = 2.0
+scale_max = 2.0
+color = Color(1, 0.92549, 0.839216, 1)
+
 [node name="Javelin" type="CharacterBody2D"]
 script = ExtResource( "1_8l6q3" )
 
@@ -36,5 +49,10 @@ disabled = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 8.0
 autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-3, 0)
+amount = 12
+process_material = SubResource( "ParticlesMaterial_ndvjv" )
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

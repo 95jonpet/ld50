@@ -5,6 +5,7 @@ signal click_pressed(Unit)
 signal click_released(Unit)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var state_machine := $StateMachine
 
 
@@ -16,6 +17,10 @@ func _input(event: InputEvent) -> void:
 func _on_unit_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
 		click_pressed.emit(self)
+
+
+func destroy() -> void:
+	queue_free()
 
 
 func play_tick() -> void:

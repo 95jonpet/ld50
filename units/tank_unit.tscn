@@ -64,3 +64,6 @@ shape = SubResource( "RectangleShape2D_g781h" )
 [node name="AnimationPlayer" parent="." index="3"]
 anims/idle = SubResource( "Animation_wbl0w" )
 anims/play_tick = SubResource( "Animation_74hm8" )
+
+[node name="ProjectilePosition" type="Position2D" parent="." index="5"]
+position = Vector2(6, -2)

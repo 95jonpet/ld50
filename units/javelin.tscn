@@ -56,4 +56,5 @@ position = Vector2(-3, 0)
 amount = 12
 process_material = SubResource( "ParticlesMaterial_ndvjv" )
 
+[connection signal="tree_entered" from="." to="." method="_on_javelin_tree_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

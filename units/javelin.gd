@@ -8,7 +8,7 @@ const TILE_SCENE := preload("res://tiles/tile.tscn")
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
-	velocity = Vector2(SPEED, 0)
+	velocity = Vector2(SPEED, 0) * scale
 	await get_tree().create_timer(0.4).timeout
 	collision_shape.set_deferred("disabled", false)
 

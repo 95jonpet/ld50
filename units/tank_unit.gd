@@ -10,4 +10,5 @@ func fire() -> void:
 	
 	var javelin = JAVELIN_SCENE.instantiate()
 	javelin.global_position = $ProjectilePosition.global_position
+	javelin.scale = scale
 	get_parent().add_sibling(javelin)

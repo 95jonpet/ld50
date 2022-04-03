@@ -74,9 +74,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Ludum Dare 50"
+config/name="Tiny tanks"
+config/description="A tiny game made for Peter Jonsson Ludum Dare 50."
 run/main_scene="res://game.tscn"
-config/icon="res://icon.png"
+config/icon="res://export/icon.png"
+config/windows_native_icon="res://export/icon.ico"
 config/features=PackedStringArray("4.0", "Vulkan Mobile")
 
 [display]

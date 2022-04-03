@@ -80,6 +80,23 @@ var levels := [
 			[null, null, "tents", null],
 		],
 	},
+	{
+		"name": "Inversion",
+		"description": "",
+		"units": ["Tank", "tank"],
+		"tiles": [
+			[null, "Tank", null, "tents"],			
+			["tank", "building", null, "tents"],
+		],
+	},
+	{
+		"name": "The second strip",
+		"description": "",
+		"units": ["tank", "Tank"],
+		"tiles": [
+			[null, "tank", null, "building", null, null, "tank", null, "tents"],
+		],
+	},
 ]
 var level_index := 0
 
@@ -162,9 +179,14 @@ func instantiate_grid_tiles() -> void:
 		for x in x_size:
 			var group := tiles
 			var scene := TILE_SCENE
+			var scene_scale = Vector2.ONE
 			match current_level.tiles[y][x]:
 				"building":
 					scene = BUILDING_TILE_SCENE
+				"Tank":
+					scene = TANK_UNIT_SCENE
+					scene_scale = Vector2(-1, 1)
+					group = enemy_units
 				"tank":
 					scene = TANK_UNIT_SCENE
 					group = enemy_units
@@ -183,6 +205,7 @@ func instantiate_grid_tiles() -> void:
 					x_start + x * (GRID_SIZE + GRID_GAP),
 					y_start + y * (GRID_SIZE + GRID_GAP)
 				).floor()
+				instance.scale = scene_scale
 				group.add_child(instance)
 				
 				if instance.is_in_group("required_tile"):
@@ -203,7 +226,11 @@ func instantiate_plan_tiles() -> void:
 		$Plan.add_child(tile)
 		
 		var scene := TANK_UNIT_SCENE
+		var scene_scale := Vector2.ONE
 		match current_level.units[i]:
+			"Tank":
+				scene = TANK_UNIT_SCENE
+				scene_scale = Vector2(-1, 1)
 			"tank":
 				scene = TANK_UNIT_SCENE
 			_:
@@ -211,6 +238,7 @@ func instantiate_plan_tiles() -> void:
 		
 		var unit := scene.instantiate()
 		unit.global_position = tile.global_position
+		unit.scale = scene_scale
 		player_units.add_child(unit)
 		plan_tiles.append(tile)
 

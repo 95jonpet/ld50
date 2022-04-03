@@ -40,6 +40,7 @@ script = ExtResource( "1_8l6q3" )
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 frames = SubResource( "SpriteFrames_62dx3" )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -47,7 +48,7 @@ shape = SubResource( "RectangleShape2D_23c1v" )
 disabled = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 4.0
 autostart = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

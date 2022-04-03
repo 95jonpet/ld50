@@ -14,7 +14,7 @@ const GAME_HEIGHT := 216
 const GRID_SIZE := 24
 const GRID_GAP := 4
 const TICK_SEQUENCE_START_TIME := 0.2 # In seconds.
-const TICK_SEQUENCE_WAIT_TIME := 1.0 # In seconds.
+const TICK_SEQUENCE_WAIT_TIME := 2.0 # In seconds.
 
 @onready var enemy_units := $EnemyUnits
 @onready var player_units := $PlayerUnits
@@ -50,6 +50,36 @@ var levels := [
 			[null, "building", "tank", "building", "tents"],
 		],
 	},
+	{
+		"name": "4x4",
+		"description": "Position is everything.",
+		"units": ["tank", "tank"],
+		"tiles": [
+			[null, "tents", null, "tank"],
+			[null, "tank", "building", "tents"],
+			[null, null, "tents", "building"],
+			[null, null, "tents", null],
+		],
+	},
+	{
+		"name": "The strip",
+		"description": "",
+		"units": ["tank"],
+		"tiles": [
+			[null, "tank", null, "building", null, null, "tank", "tents"],
+		],
+	},
+	{
+		"name": "4x4 v2",
+		"description": "War changes things.",
+		"units": ["tank", "tank", "tank"],
+		"tiles": [
+			[null, "tents", null, "tank"],
+			[null, "tank", "building", "tents"],
+			[null, null, "tents", "building"],
+			[null, null, "tents", null],
+		],
+	},
 ]
 var level_index := 0
 
@@ -80,7 +110,6 @@ func complete_level() -> void:
 	await $TransitionScreen.transitioned
 	
 	level_index = wrapi(level_index + 1, 0, len(levels))
-	await get_tree().create_timer(1.0).timeout
 	reset_level()
 
 

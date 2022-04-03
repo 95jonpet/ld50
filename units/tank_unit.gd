@@ -10,4 +10,4 @@ func fire() -> void:
 	
 	var javelin = JAVELIN_SCENE.instantiate()
 	javelin.global_position = $ProjectilePosition.global_position
-	add_sibling(javelin)
+	get_parent().add_sibling(javelin)

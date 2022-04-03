@@ -77,6 +77,7 @@ _global_script_class_icons={
 config/name="Tiny tanks"
 config/description="A tiny game made for Peter Jonsson Ludum Dare 50."
 run/main_scene="res://game.tscn"
+boot_splash/show_image=false
 config/icon="res://export/icon.png"
 config/windows_native_icon="res://export/icon.ico"
 config/features=PackedStringArray("4.0", "Vulkan Mobile")
@@ -97,7 +98,7 @@ click={
 
 [rendering]
 
-vulkan/rendering/back_end=1
+vulkan/rendering/back_end.mobile=0
 environment/defaults/default_clear_color=Color(0.0509804, 0.168627, 0.270588, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

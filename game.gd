@@ -241,6 +241,9 @@ func instantiate_plan_tiles() -> void:
 		unit.scale = scene_scale
 		player_units.add_child(unit)
 		plan_tiles.append(tile)
+	
+	for unit in enemy_units.get_children():
+		unit.state_machine.transition_to("Idle")
 
 
 func end_deployment() -> void:

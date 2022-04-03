@@ -44,6 +44,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://tiles/tile.gd"
 }, {
+"base": "CanvasLayer",
+"class": &"TransitionScreen",
+"language": &"GDScript",
+"path": "res://ui/transition_screen.gd"
+}, {
 "base": "CharacterBody2D",
 "class": &"Unit",
 "language": &"GDScript",
@@ -62,6 +67,7 @@ _global_script_class_icons={
 "StateMachine": "",
 "TankUnit": "res://units/tank_unit.png",
 "Tile": "res://tiles/tile_outline.png",
+"TransitionScreen": "",
 "Unit": "",
 "UnitState": ""
 }

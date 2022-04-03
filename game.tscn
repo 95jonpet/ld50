@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv6s6gsst2nst"]
+[gd_scene load_steps=8 format=3 uid="uid://dv6s6gsst2nst"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_1wnln"]
+[ext_resource type="PackedScene" uid="uid://dyfafy4vcd1xe" path="res://ui/transition_screen.tscn" id="2_3n7im"]
 [ext_resource type="PackedScene" uid="uid://bsdfbsy7jel2t" path="res://plans/plan_inventory_item.tscn" id="2_qfx76"]
 [ext_resource type="Texture2D" uid="uid://bk6lvwwjcqdhk" path="res://units/bomb.png" id="3_rxp3g"]
 [ext_resource type="PackedScene" uid="uid://3cwjkk7of4rg" path="res://levels/level.tscn" id="4_g8yrq"]
@@ -9,6 +10,9 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource( "1_1wnln" )
+
+[node name="TransitionScreen" parent="." instance=ExtResource( "2_3n7im" )]
+layer = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -65,16 +65,29 @@ func level_completed() -> bool:
 	return enemy_units.get_child_count() == 0
 
 
-func level_completable() -> bool:
-	return (
-		get_tree().get_nodes_in_group("required_tile").size() == required_tile_count
-		and player_units.get_child_count() > 0
-	)
+func level_failed() -> String:
+	if get_tree().get_nodes_in_group("required_tile").size() != required_tile_count:
+		return "Civilians were killed."
+	
+	if player_units.get_child_count() == 0:
+		return "All units have been destroyed.\nHope is lost."
+	
+	return ""
 
 
 func complete_level() -> void:
+	$TransitionScreen.transition("Level complete!")
+	await $TransitionScreen.transitioned
+	
 	level_index = wrapi(level_index + 1, 0, len(levels))
 	await get_tree().create_timer(1.0).timeout
+	reset_level()
+
+
+func restart_level(reason: String) -> void:
+	$TransitionScreen.transition("Game over!", reason)
+	await $TransitionScreen.transitioned
+	
 	reset_level()
 
 
@@ -209,12 +222,10 @@ func play_tick_sequence() -> void:
 		
 		# Check for level completion.
 		if level_completed():
-			print("Level complete")
 			complete_level()
 			return
-		if not level_completable():
-			print("Level lost")
-			reset_level()
+		if level_failed():
+			restart_level(level_failed())
 			return
 	can_start_tick_sequence = true
 	$UI/HBoxContainer/StartButton.disabled = false
